@@ -33,8 +33,26 @@ public class Main {
                 }
                 index++;
             }
-
+            endTurn(planets,companies);
+            System.out.println(planets.get(0).getSpaceStations().size());
+            System.out.println("end turn");
         }
+    }
+
+    private static void endTurn(ArrayList<Planet> planets, ArrayList<Company> companies) {
+    for(Planet p:planets){
+        for (int i=p.tempStations.size()-1;i<0;i--){
+            int timeLeft = p.counters.get(i);
+            if(timeLeft == 0){
+                System.out.println("yo");
+                p.getSpaceStations().add(p.tempStations.get(i));
+                p.tempStations.remove(i);
+            }
+            else{
+                timeLeft--;
+            }
+        }
+    }
     }
 
     public static ArrayList<String> webScrape() {
