@@ -4,7 +4,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
@@ -16,7 +20,7 @@ public class Main {
         ArrayList<Planet> planets = new ArrayList<Planet>();
         planets.add(new Planet("Earth",10000000,7800000));
         for (Company c:companies) {
-            planets.get(0).getList().add(new SpaceStation(c.getName()+"'s Station",30,c.getName(),5));
+            planets.get(0).getSpaceStations().add(new SpaceStation(c.getName()+"'s Station",30,c.getName(),5));
         }
         while (true){
             int index =0;
@@ -53,5 +57,44 @@ public class Main {
             ArrayList<String> blank = new ArrayList<String>();
             return blank;
         }
+    }
+
+    public static int menuDialogue(String textFile, String marker){
+        int choice;
+        int entries = 1;
+        try {
+            File text = new File(textFile);
+            Scanner typed = new Scanner(System.in);
+            Scanner myReader = new Scanner(text);
+            boolean found = false;
+            String data = "";
+            boolean done = false;
+            while(myReader.hasNextLine() && !done){
+                data = myReader.nextLine();
+                if (found) {
+                    if (data.equals("")) {
+                        done=true;
+                    }
+                    else {
+                        System.out.println(entries+": "+data);
+                        entries++;
+                        //input.nextLine();
+                    }
+                }
+                if(data.equals(marker)){
+                    found = true;
+                }
+            }
+            myReader.close();
+            while (true){
+                choice = typed.nextInt();
+                if (choice >=1 && choice <entries){
+                    return choice;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

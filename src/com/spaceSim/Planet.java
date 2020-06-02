@@ -1,22 +1,24 @@
 package com.spaceSim;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
+import static com.spaceSim.Main.menuDialogue;
+
 
 public class Planet extends SpaceObjects {
-    private java.util.List list = new java.util.ArrayList();
-    private Object SpaceStation;
+    private ArrayList spaceStations = new ArrayList();
+    //private Object SpaceStation;
 
     public Planet(String name, int capacity, int population) {
         super(name,capacity,population);
     }
 
-    public List getList() {
-        return list;
+    public ArrayList getSpaceStations() {
+        return spaceStations;
     }
 
-    public void setList(List list) {
-        this.list = list;
+    public void setSpaceStations(ArrayList spaceStations) {
+        this.spaceStations = spaceStations;
     }
 
     public void planetInfo(Scanner input, Company company) {
@@ -25,13 +27,10 @@ public class Planet extends SpaceObjects {
         System.out.println("Capacity: " + this.capacity);
         System.out.println("");
         while (true) {
-            System.out.println("1: View Space Stations");
-            System.out.println("2: Build a Space Station");
-            System.out.println("3: Back");
-            int choice = input.nextInt();
+            int choice = menuDialogue("menu.txt","2");
             if (choice == 1) {
-                for (Object s:list){
-                    if(s.getClass() == SpaceStation){
+                for (var s:spaceStations){
+                    if(1==1){
                         //s.getName()
                     }
                 }
@@ -41,7 +40,7 @@ public class Planet extends SpaceObjects {
                 if (buyChoice.toLowerCase().equals("y")){
                     company.setMoney(company.getMoney()-(100+100*company.getInfluence()));
                 }
-            } else {
+            } else if (choice == 3) {
                 break;
             }
         }
