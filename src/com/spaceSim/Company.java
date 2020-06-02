@@ -13,9 +13,6 @@ public class Company {
         this.name = name;
         this.money = money;
         this.influence = influence;
-        //java.util.List list = new java.util.ArrayList();
-        //list.add(new SpaceStation("Earth","HappyTime",20));
-        //ArrayList<> beep = new ArrayList<>();
     }
 
     public String getName() {
@@ -76,27 +73,6 @@ public class Company {
                     planets.get(choice+page*counter -1).planetInfo(input,this);
                 }
         }
-//        for (int i=0;i>planets.size();i++){
-//            if(counter==9){
-//                System.out.println("9: Next Page");
-//                System.out.println("0: Back");
-//                int choice = input.nextInt();
-//                if (choice == 9){
-//                    page++;
-//                }
-//                else if (choice == 0){
-//                    i=planets.size();
-//                }
-//                else{
-//                    System.out.println();
-//                    planets.get(i+page*counter).planetInfo(input,this);
-//                }
-//            }
-//            else {
-//                System.out.println(counter + ": " + planets.get(i));
-//                counter++;
-//            }
-//        }
     }
 
     public void playerTurn(ArrayList<Planet> planets) {

@@ -6,8 +6,9 @@ import static com.spaceSim.Main.menuDialogue;
 
 
 public class Planet extends SpaceObjects {
-    private ArrayList spaceStations = new ArrayList();
-    //private Object SpaceStation;
+    private ArrayList<SpaceStation> spaceStations = new ArrayList<SpaceStation>();
+    ArrayList<SpaceStation> tempStations = new ArrayList<>();
+    ArrayList<Integer> counters = new ArrayList<>();
 
     public Planet(String name, int capacity, int population) {
         super(name,capacity,population);
@@ -30,15 +31,26 @@ public class Planet extends SpaceObjects {
             int choice = menuDialogue("menu.txt","2");
             if (choice == 1) {
                 for (var s:spaceStations){
-                    if(1==1){
-                        //s.getName()
+                    System.out.println("Name: "+ s.getName());
+                    System.out.println("Population: "+s.getPopulation());
+                    System.out.println("Capacity: "+s.getCapacity());
+                    choice = menuDialogue("menu.txt","3");
+                    if(choice==1){
+                        System.out.println("It will cost "+ 40+40*company.getInfluence()+"credits, are you sure? y/n");
+                        String buyChoice = input.nextLine();
+                        if (buyChoice.toLowerCase().equals("y")){
+                            company.setMoney(company.getMoney()-(40+40*company.getInfluence()));
+                        }
                     }
                 }
             } else if (choice == 2) {
                 System.out.println("It will cost "+ 100+100*company.getInfluence()+"credits, are you sure? y/n");
                 String buyChoice = input.nextLine();
+                System.out.println("this was skipped");
                 if (buyChoice.toLowerCase().equals("y")){
                     company.setMoney(company.getMoney()-(100+100*company.getInfluence()));
+                    this.tempStations.add(new SpaceStation("new Station",10,company.getName(),3));
+                    this.counters.add(0);
                 }
             } else if (choice == 3) {
                 break;
