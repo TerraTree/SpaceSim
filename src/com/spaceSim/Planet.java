@@ -37,7 +37,7 @@ public class Planet extends SpaceObjects {
                     names.add(ss.getName());
                 }
                 int index = objectDialogue(names);
-                if (index != 0) {
+                if (index != -1) {
                     SpaceStation s = spaceStations.get(index);
                     System.out.println("Name: " + s.getName());
                     System.out.println("Population: " + s.getPopulation());
@@ -49,22 +49,19 @@ public class Planet extends SpaceObjects {
                         if (buyChoice.toLowerCase().equals("y")) {
                             company.setMoney(company.getMoney() - (40 + 40 * company.getInfluence()));
                         }
-                    } else if (choice == 2) {
-                        System.out.println("It will cost " + 100 + 100 * company.getInfluence() + "credits, are you sure? y/n");
-                        String buyChoice = input.nextLine();
-                        //System.out.println("this was skipped");
-                        if (buyChoice.toLowerCase().equals("y")) {
-                            company.setMoney(company.getMoney() - (100 + 100 * company.getInfluence()));
-                            this.tempStations.add(new SpaceStation("new Station", 10, company.getName(), 3));
-                            this.counters.add(0);
-                            System.out.println("building space station");
-                        }
-                    } else if (choice == 3) {
-                        break;
                     }
-
-
                 }
+            } else if (choice == 2) {
+                System.out.println("It will cost " + 100 + 100 * company.getInfluence() + "credits, are you sure? y/n");
+                String buyChoice = input.nextLine();
+                if (buyChoice.toLowerCase().equals("y")) {
+                    company.setMoney(company.getMoney() - (100 + 100 * company.getInfluence()));
+                    this.tempStations.add(new SpaceStation("new Station", 10, company.getName(), 3));
+                    this.counters.add(0);
+                    System.out.println("building space station");
+                }
+            } else if (choice == 3) {
+                break;
             }
         }
     }

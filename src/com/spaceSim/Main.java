@@ -34,20 +34,19 @@ public class Main {
                 index++;
             }
             endTurn(planets,companies);
-            //System.out.println(planets.get(0).getSpaceStations().size());
             System.out.println("end turn");
         }
     }
 
     private static void endTurn(ArrayList<Planet> planets, ArrayList<Company> companies) {
     for(Planet p:planets){
-        System.out.println("new stations: " + p.counters.size());
-        for (int i=p.tempStations.size()-1;i<0;i--){
+        for (int i=p.tempStations.size()-1;i>-1;i--){
             int timeLeft = p.counters.get(i);
             System.out.println(timeLeft);
             if(timeLeft == 0){
                 System.out.println(p.tempStations.get(i).population);
                 p.getSpaceStations().add(p.tempStations.get(i));
+                p.counters.remove(i);
                 p.tempStations.remove(i);
             }
             else{
@@ -58,12 +57,12 @@ public class Main {
     }
 
     public static ArrayList<String> webScrape() {
-        final String url = "http://enneadgames.com/generators/planet-name-generator/";
+        final String url = "http://enneadgames.com/generators/planet-name-generator/"; //Gets the url of the planet name generator
         try {
             final Document document = Jsoup.connect(url).get();
-            Elements name = document.getElementsByClass("column-2");
-            name.remove(0);
-            name.remove(name.size() - 1);
+            Elements name = document.getElementsByClass("column-2"); //finds the column with the names in
+            name.remove(0); //removes the first row which doesnt contain any names
+            name.remove(name.size() - 1);//removes the last 2 rows which also dont contain any names
             name.remove(name.size() - 1);
             ArrayList<String> tempScraped = new ArrayList<String>();
             for (Element e : name) {
@@ -107,8 +106,7 @@ public class Main {
                 return 0;
             }
             else if (choice > 0 && choice < counter){
-                System.out.println("counter: "+counter);
-                int index = choice + page*counter;
+                int index = choice + page*counter-1;
                 return index;
             }
             else{

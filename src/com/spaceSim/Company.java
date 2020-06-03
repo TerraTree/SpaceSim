@@ -62,7 +62,7 @@ public class Company {
                         names.add(p.getName());
                     }
                     int index2 = objectDialogue(names);
-                    if (index2 != 0){
+                    if (index2 != -1){
                         planets.get(index2).planetInfo(this);
                     }
                     break;
