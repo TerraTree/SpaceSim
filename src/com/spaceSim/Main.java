@@ -34,17 +34,19 @@ public class Main {
                 index++;
             }
             endTurn(planets,companies);
-            System.out.println(planets.get(0).getSpaceStations().size());
+            //System.out.println(planets.get(0).getSpaceStations().size());
             System.out.println("end turn");
         }
     }
 
     private static void endTurn(ArrayList<Planet> planets, ArrayList<Company> companies) {
     for(Planet p:planets){
+        System.out.println("new stations: " + p.counters.size());
         for (int i=p.tempStations.size()-1;i<0;i--){
             int timeLeft = p.counters.get(i);
+            System.out.println(timeLeft);
             if(timeLeft == 0){
-                System.out.println("yo");
+                System.out.println(p.tempStations.get(i).population);
                 p.getSpaceStations().add(p.tempStations.get(i));
                 p.tempStations.remove(i);
             }

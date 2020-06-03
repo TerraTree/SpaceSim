@@ -68,9 +68,9 @@ public class Company {
                else if (choice == 0){
                     running = false;
                 }
-                else{
+                else if (choice > 0 && choice <= counter){
                     System.out.println();
-                    planets.get(choice+page*counter -1).planetInfo(input,this);
+                    planets.get(choice+page*counter -1).planetInfo(this);
                 }
         }
     }
