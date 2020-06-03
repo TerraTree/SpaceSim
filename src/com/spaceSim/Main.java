@@ -17,7 +17,7 @@ public class Main {
         ArrayList<Company> companies = new ArrayList<Company>();
         Company playerCompany = new Company("PlayerCompany",100,0);
         companies.add(playerCompany);
-        ArrayList<Planet> planets = new ArrayList<Planet>();
+        ArrayList<Planet> planets = new ArrayList<>();
         planets.add(new Planet("Earth",10000000,7800000));
         for (Company c:companies) {
             planets.get(0).getSpaceStations().add(new SpaceStation(c.getName()+"'s Station",30,c.getName(),5));
@@ -77,6 +77,45 @@ public class Main {
             ArrayList<String> blank = new ArrayList<String>();
             return blank;
         }
+    }
+
+    public static int objectDialogue(ArrayList<String> spaceNames){
+        Scanner input = new Scanner(System.in);
+        int page=0;
+        int counter=1;
+        boolean running = true;
+        System.out.println(spaceNames.size());
+        while (running) {
+            for (int i = page * 8; i < spaceNames.size(); i++) {
+                if (counter == 9) {
+                    break;
+                } else {
+                    System.out.println(counter + ": " + spaceNames.get(i));
+                    counter++;
+                }
+            }
+            if (counter ==9) {
+                System.out.println("9: Next Page");
+            }
+            System.out.println("0: Back");
+            int choice = input.nextInt();
+            if (choice == 9 && counter==9){
+                page++;
+                counter=1;
+            }
+            else if (choice == 0){
+                return 0;
+            }
+            else if (choice > 0 && choice < counter){
+                System.out.println("counter: "+counter);
+                int index = choice + page*counter;
+                return index;
+            }
+            else{
+                counter--;
+            }
+        }
+        return 0;
     }
 
     public static int menuDialogue(String textFile, String marker){

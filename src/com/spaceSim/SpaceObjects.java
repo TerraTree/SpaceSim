@@ -44,4 +44,9 @@ public class SpaceObjects {
     public void setGrowth(int growth) {
         this.growth = growth;
     }
+
+    //public void info(Company company){
+    //}
+
+
 }

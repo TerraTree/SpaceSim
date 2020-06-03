@@ -3,6 +3,8 @@ package com.spaceSim;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static com.spaceSim.Main.objectDialogue;
+
 public class Company {
     private String name;
     private int money;
@@ -43,38 +45,6 @@ public class Company {
 
     }
 
-    public void viewPlanets(ArrayList<Planet> planets, Scanner input){
-        int page=0;
-        int counter=1;
-        boolean running = true;
-        System.out.println(planets.size());
-        while (running) {
-            for (int i = 0; i < planets.size(); i++) {
-                if (counter == 9) {
-                    break;
-                }
-                System.out.println("1: "+ planets.get(i).getName());
-                counter++;
-            }
-            if (counter ==9) {
-                System.out.println("9: Next Page");
-            }
-            System.out.println("0: Back");
-            int choice = input.nextInt();
-            if (choice == 9 && counter==9){
-                    page++;
-                    counter=1;
-                }
-               else if (choice == 0){
-                    running = false;
-                }
-                else if (choice > 0 && choice <= counter){
-                    System.out.println();
-                    planets.get(choice+page*counter -1).planetInfo(this);
-                }
-        }
-    }
-
     public void playerTurn(ArrayList<Planet> planets) {
         int index = 1;
         Scanner input = new Scanner(System.in);
@@ -87,7 +57,14 @@ public class Company {
             int choice = input.nextInt();
             switch (choice) {
                 case 1:
-                    this.viewPlanets(planets, input);
+                    ArrayList<String> names = new ArrayList<>();
+                    for (Planet p:planets){
+                        names.add(p.getName());
+                    }
+                    int index2 = objectDialogue(names);
+                    if (index2 != 0){
+                        planets.get(index2).planetInfo(this);
+                    }
                     break;
                 case 2:
 
